@@ -1,8 +1,8 @@
 import { createStore, applyMiddleware } from 'redux'
-import promiseMiddleware from 'redux-promise'
+import thunk from 'redux-thunk'
 import rootReducer from './reducers'
 
-export default function configStore () {
-  const store = createStore(rootReducer, applyMiddleware(promiseMiddleware))
+export default function configStore() {
+  const store = createStore(rootReducer, applyMiddleware(thunk))
   return store
 }

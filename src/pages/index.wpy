@@ -18,7 +18,7 @@
 <template>
   <view class="container">
     <view class="userinfo" @tap="handleViewTap">
-      <image class="userinfo-avatar" src="{{ userInfo.avatarUrl }}" background-size="cover"/>
+      <image class="userinfo-avatar" src="{{ userInfo.avatarUrl }}" background-size="cover" />
       <view class="userinfo-nickname">{{ userInfo.nickName }}</view>
     </view>
 
@@ -33,7 +33,7 @@
       <text class="info">{{num}}</text>
       <text class="info">{{asyncNum}}</text>
       <text class="info">{{sumNum}}</text>
-      <button @tap="plus('a')" size="mini">  +  </button>
+      <button @tap="plus('a')" size="mini"> + </button>
     </panel>
 
     <panel>
@@ -45,7 +45,9 @@
 
     <panel>
       <view class="title" slot="title">测试并发网络请求</view>
-      <view>返回结果: <text>{{netrst}}</text></view>
+      <view>返回结果:
+        <text>{{netrst}}</text>
+      </view>
       <button @tap="request" size="mini"> 点我发起10个请求 </button>
     </panel>
 
@@ -76,7 +78,6 @@
       <list></list>
     </panel>
 
-    <toast />
   </view>
 </template>
 
@@ -88,19 +89,18 @@
   import List from '../components/list' // aliasFields example
   import moduleA from 'module-a' // aliasFields ignore module example
   import Group from '../components/group'
-  import Toast from 'wepy-com-toast'
   import testMixin from '../mixins/test'
 
   console.log('moduleA ignored: ', moduleA) // => moduleA ignored: {}
 
   @connect({
-    num (state) {
+    num(state) {
       return state.counter.num
     },
-    asyncNum (state) {
+    asyncNum(state) {
       return state.counter.asyncNum
     },
-    sumNum (state) {
+    sumNum(state) {
       return state.counter.num + state.counter.asyncNum
     }
   })
@@ -114,8 +114,7 @@
       counter1: Counter,
       counter2: Counter,
       list: List,
-      group: Group,
-      toast: Toast
+      group: Group
     }
 
     mixins = [testMixin]
@@ -176,29 +175,29 @@
     }
 
     computed = {
-      now () {
+      now() {
         return +new Date()
       }
     }
 
     methods = {
-      plus () {
+      plus() {
         this.mynum++
       },
-      toast () {
-        let promise = this.$invoke('toast', 'show', {
-          title: '自定义标题',
-          img: 'https://raw.githubusercontent.com/kiinlam/wetoast/master/images/star.png'
-        })
+      toast() {
+        // let promise = this.$invoke('toast', 'show', {
+        //   title: '自定义标题',
+        //   img: 'https://raw.githubusercontent.com/kiinlam/wetoast/master/images/star.png'
+        // })
 
-        promise.then((d) => {
-          console.log('toast done')
-        })
+        // promise.then((d) => {
+        console.log('toast done')
+        // })
       },
-      tap () {
+      tap() {
         console.log('do noting from ' + this.$name)
       },
-      communicate () {
+      communicate() {
         console.log(this.$name + ' tap')
 
         this.$invoke('counter2', 'minus', 45, 6)
@@ -206,7 +205,7 @@
 
         this.$broadcast('index-broadcast', 1, 3, 4)
       },
-      request () {
+      request() {
         let self = this
         let i = 10
         let map = ['MA==', 'MQo=', 'Mg==', 'Mw==', 'NA==', 'NQ==', 'Ng==', 'Nw==', 'OA==', 'OQ==']
@@ -220,7 +219,7 @@
           })
         }
       },
-      counterEmit (...args) {
+      counterEmit(...args) {
         let $event = args[args.length - 1]
         console.log(`${this.$name} receive ${$event.name} from ${$event.source.$name}`)
       }

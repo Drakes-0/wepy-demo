@@ -41,6 +41,15 @@ module.exports = {
     }
   },
   plugins: {
+    replace: [
+      {
+        filter: /_nodeUtil\.js$/,
+        config: {
+          find: /freeGlobal\.process/g,
+          replace: "null"
+        }
+      }
+    ]
   },
   appConfig: {
     noPromiseAPI: ['createSelectorQuery']

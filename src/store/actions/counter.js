@@ -1,10 +1,8 @@
-import { ASYNC_INCREMENT } from '../types/counter'
-import { createAction } from 'redux-actions'
+import { ASYNC_INCREMENT, ASYNC_INCREMENT_DONE } from '../types/counter'
 
-export const asyncInc = createAction(ASYNC_INCREMENT, () => {
-  return new Promise(resolve => {
-    setTimeout(() => {
-      resolve(1)
-    }, 1000)
-  })
-})
+// const asyncInc = createAction(ASYNC_INCREMENT, () => (dispatch) => dispatch({ type: ASYNC_INCREMENT_DONE, payload: 1 }))
+
+const asyncInc = () => dispatch => dispatch({ type: ASYNC_INCREMENT_DONE, payload: 1 })
+//console.log(asyncInc())
+
+export { asyncInc }
