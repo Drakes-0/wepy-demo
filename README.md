@@ -16,9 +16,13 @@
 
 ## 去除默认引入的`redux-actions`
 
+采纳`redux-actions`的`createActions`和`handleActions`写法
+
 ## 运行环境导致的异常
 
 引用`wepy-plugin-replace`处理`npm`包或源码中运行环境相关的代码
+
+## 集成`postcss`编译环节，`less`暂时移除
 
 **处理后的包体积：**
 **171KB**

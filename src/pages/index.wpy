@@ -1,4 +1,4 @@
-<style lang="less">
+<style lang="postcss">
   .userinfo {
     display: flex;
     flex-direction: column;
@@ -208,12 +208,12 @@
       request() {
         let self = this
         let i = 10
-        let map = ['MA==', 'MQo=', 'Mg==', 'Mw==', 'NA==', 'NQ==', 'Ng==', 'Nw==', 'OA==', 'OQ==']
         while (i--) {
           wepy.request({
-            url: 'https://www.madcoder.cn/tests/sleep.php?time=1&t=css&c=' + map[i] + '&i=' + i,
+            url: 'https://m.douyu.com/index/getHomeData',
             success: function (d) {
-              self.netrst += d.data + '.'
+              console.log(d)
+              self.netrst += i + '.'
               self.$apply()
             }
           })

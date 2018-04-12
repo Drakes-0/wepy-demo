@@ -19,6 +19,11 @@ import configStore from './store'
 const store = configStore()
 setStore(store)
 
+console.log('????')
+console.log(this)
+console.log(global)
+console.log(self)
+
 export default class extends wepy.app {
   config = {
     pages: [

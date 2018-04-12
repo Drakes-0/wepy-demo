@@ -1,4 +1,5 @@
 const path = require('path');
+const cssnext = require('cssnext')
 var prod = process.env.NODE_ENV === 'production';
 
 module.exports = {
@@ -23,6 +24,13 @@ module.exports = {
   compilers: {
     less: {
       compress: prod
+    },
+    postcss: {
+      plugins: [
+        cssnext({
+          browsers: ['ios 9', 'android 4.4']
+        })
+      ]
     },
     /*sass: {
       outputStyle: 'compressed'
