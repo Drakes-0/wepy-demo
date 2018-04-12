@@ -24,9 +24,21 @@
 
 ## 集成`postcss`编译环节，`less`暂时移除
 
+添加`cssnext`并将运行环境设置为`ios 9`与`android 4.4`
+
+## 添加工作区IDE配置以完全适配`wepy`组件编译环节
+
+目前仅`vscode`
+tabSize:2
+endWithNewline:true
+
 **处理后的包体积：**
 **171KB**
 
 ## `wepy`的坑
 
 `wpy`组件文件需要以空行结束
+
+空的`style`不生成`wxss`文件导致微信开发者工具报错
+
+与设定不符的缩进格式会导致编译报错

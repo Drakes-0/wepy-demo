@@ -17,6 +17,8 @@
 </style>
 <template>
   <view class="container">
+    <mySwiper :list="swiperList" />
+
     <view class="userinfo" @tap="handleViewTap">
       <image class="userinfo-avatar" src="{{ userInfo.avatarUrl }}" background-size="cover" />
       <view class="userinfo-nickname">{{ userInfo.nickName }}</view>
@@ -91,6 +93,8 @@
   import Group from '../components/group'
   import testMixin from '../mixins/test'
 
+  import mySwiper from '../components/my-swiper'
+
   console.log('moduleA ignored: ', moduleA) // => moduleA ignored: {}
 
   @connect({
@@ -114,12 +118,14 @@
       counter1: Counter,
       counter2: Counter,
       list: List,
-      group: Group
+      group: Group,
+      mySwiper
     }
 
     mixins = [testMixin]
 
     data = {
+      swiperList: [],
       mynum: 20,
       userInfo: {
         nickName: '加载中...'

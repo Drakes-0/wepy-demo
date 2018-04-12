@@ -1,0 +1,27 @@
+<style lang="postcss">
+
+
+</style>
+
+<template>
+  <swiper>
+    <repeat for="{{list}}" key="index" index="index" item="item">
+      <swiper-item>
+        <image src="{{item.pic_url}}"></image>
+      </swiper-item>
+    </repeat>
+  </swiper>
+</template>
+
+<script>
+  import wepy from 'wepy'
+
+  export default class mySwiper extends wepy.component {
+    props = {
+      list: {
+        type: Array,
+        default: []
+      }
+    }
+  }
+</script>
