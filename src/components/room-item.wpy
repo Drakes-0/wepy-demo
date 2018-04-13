@@ -1,0 +1,52 @@
+<style lang="postcss">
+  .room-item {
+    flex: auto;
+
+    & .room-item-banner {
+      position: relative;
+      width: 100%;
+      height: 80%;
+    }
+
+    & .room-item-info {
+      width: 100%;
+      height: 20%;
+    }
+  }
+
+</style>
+
+<template>
+  <view class="room-item" hover-stop-propagation="true">
+    <view class="room-item-banner">
+      <image src="{{roomInfo.pic_url}}"></image>
+    </view>
+    <view class="room-item-info">
+      <view>CD锤石创始人青蛙</view>
+      <view>1.37万</view>
+    </view>
+  </view>
+
+</template>
+
+<script>
+  import wepy from 'wepy'
+
+  export default class roomItem extends wepy.Component {
+    props = {
+      width: {
+        type: Number,
+        default: 150
+      },
+      height: {
+        type: Number,
+        default: 150
+      },
+      roomInfo: {
+        type: Object,
+        default: {}
+      }
+    }
+  }
+
+</script>
