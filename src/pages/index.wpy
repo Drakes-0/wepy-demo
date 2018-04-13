@@ -31,7 +31,7 @@
     }
 
     data = {
-      swiperList: [{ url: 'https://staticlive.douyucdn.cn/storage/webpic_resources/upload/slide/2018/0407/201804072318351393.png' }],
+      swiperList: [{ url: 'https://staticlive.douyucdn.cn/storage/webpic_resources/upload/slide/2018/0407/201804072318351393.png' }]
     }
 
     computed = {
