@@ -14,10 +14,11 @@
   .userinfo-nickname {
     color: #aaa;
   }
+
 </style>
 <template>
   <view class="container">
-    <mySwiper :list="swiperList" />
+    <mySwiper :list.sync="swiperList" />
 
     <view class="userinfo" @tap="handleViewTap">
       <image class="userinfo-avatar" src="{{ userInfo.avatarUrl }}" background-size="cover" />
@@ -111,7 +112,7 @@
 
   export default class Index extends wepy.page {
     config = {
-      navigationBarTitleText: 'test'
+      navigationBarTitleText: '夜照'
     }
     components = {
       panel: Panel,
@@ -125,7 +126,7 @@
     mixins = [testMixin]
 
     data = {
-      swiperList: [],
+      swiperList: [{ url: 'https://staticlive.douyucdn.cn/storage/webpic_resources/upload/slide/2018/0407/201804072318351393.png' }],
       mynum: 20,
       userInfo: {
         nickName: '加载中...'
@@ -213,17 +214,15 @@
       },
       request() {
         let self = this
-        let i = 10
-        while (i--) {
-          wepy.request({
-            url: 'https://m.douyu.com/index/getHomeData',
-            success: function (d) {
-              console.log(d)
-              self.netrst += i + '.'
-              self.$apply()
-            }
-          })
-        }
+        wepy.request({
+          url: 'https://m.douyu.com/index/getHomeData',
+          success: function (d) {
+            console.log(d)
+            self.swiperList = d.data.banner.map(i => ({ url: i.pic_url }))
+            console.log(self.swiperList)
+            self.$apply()
+          }
+        })
       },
       counterEmit(...args) {
         let $event = args[args.length - 1]

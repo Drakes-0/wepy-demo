@@ -1,5 +1,5 @@
 const path = require('path');
-const cssnext = require('cssnext')
+const cssnext = require('postcss-cssnext')
 var prod = process.env.NODE_ENV === 'production';
 
 module.exports = {

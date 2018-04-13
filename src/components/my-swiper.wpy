@@ -1,13 +1,21 @@
 <style lang="postcss">
+  .swiper {
+    width: 100%;
 
+    & .swiper-item,
+    & .swiper-item-image {
+      width: 100%;
+      height: 100%;
+    }
+  }
 
 </style>
 
 <template>
-  <swiper>
+  <swiper class="swiper" indicator-dots="true" autoplay="true" interval="2000" circular="true">
     <repeat for="{{list}}" key="index" index="index" item="item">
-      <swiper-item>
-        <image src="{{item.pic_url}}"></image>
+      <swiper-item class="swiper-item">
+        <image class="swiper-item-image" src="{{item.url}}"></image>
       </swiper-item>
     </repeat>
   </swiper>
