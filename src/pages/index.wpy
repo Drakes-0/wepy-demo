@@ -1,16 +1,25 @@
 <style lang="postcss">
-
+  .launch-image {
+    width: 100%;
+    height: 100%;
+  }
 
 </style>
 <template>
   <view class="container">
-    <mySwiper :list.sync="swiperList" />
+    <block wx:if="{{status===0}}">
+      <image class="launch-image" src="../assets/images/launch.png" />
+    </block>
+    <block wx:if="{{status===1}}">
+      <mySwiper :list.sync="swiperList" />
 
-    <view>
-      <repeat for="{{roomList}}" item="item" key="index">
+      <view>
+        <repeat for="{{roomList}}" item="item" key="index">
 
-      </repeat>
-    </view>
+        </repeat>
+      </view>
+    </block>
+    <block wx:if="{{status===-1}}"></block>
 
   </view>
 </template>
@@ -18,6 +27,7 @@
 <script>
   import wepy from 'wepy'
   import { connect } from 'wepy-redux'
+  import httpClient from '../lib/httpClient'
   import mySwiper from '../components/my-swiper'
 
   @connect({})
@@ -31,28 +41,28 @@
     }
 
     data = {
-      swiperList: [{ url: 'https://staticlive.douyucdn.cn/storage/webpic_resources/upload/slide/2018/0407/201804072318351393.png' }]
+      status: 0,
+      swiperList: []
     }
 
     computed = {
     }
 
+    request() {
+      let self = this
+      httpClient.request('https://m.douyu.com/index/getHomeData').then(data => {
+        console.log(data)
+        self.swiperList = data.banner.map(i => ({ url: i.pic_url }))
+        self.$apply()
+      })
+    }
+
     methods = {
-      request() {
-        let self = this
-        wepy.request({
-          url: 'https://m.douyu.com/index/getHomeData',
-          success: function (d) {
-            console.log(d)
-            self.swiperList = d.data.banner.map(i => ({ url: i.pic_url }))
-            console.log(self.swiperList)
-            self.$apply()
-          }
-        })
-      }
+
     }
 
     onLoad() {
+      this.request()
     }
   }
 </script>
